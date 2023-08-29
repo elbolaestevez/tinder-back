@@ -16,12 +16,17 @@ export class LocationDto {
   longitude: number;
 }
 
-export class CreateUserDto {
+export class EditUserDto {
+  @IsNotEmpty()
+  uuid: string;
+
+  @IsOptional()
   @MinLength(4)
   @IsString()
   @IsNotEmpty()
   name: string;
 
+  @IsOptional()
   @MinLength(4)
   @IsEmail()
   email: string;
@@ -38,6 +43,7 @@ export class CreateUserDto {
   @IsOptional()
   description: string;
 
+  @IsOptional()
   @IsNumber({}, { each: true }) // Validate each item in the array
   @IsArray()
   @IsOptional()

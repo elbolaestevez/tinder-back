@@ -26,7 +26,7 @@ export class User extends Document {
   @Prop()
   description: string;
 
-  @Prop([Number])
+  @Prop({ type: [Number], default: 0 })
   ageRange: number[];
 
   @Prop({ type: Object }) // Use 'Object' type for complex object
@@ -38,19 +38,19 @@ export class User extends Document {
   @Prop({ default: false })
   isAdmin: boolean;
 
-  @Prop({ required: true })
+  @Prop()
   images: string[];
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Profile' })
   postedBy: MongooseSchema.Types.ObjectId;
 
-  @Prop()
+  @Prop({ default: 0 })
   distance: number;
 
-  @Prop()
+  @Prop({ default: 0 })
   artistPreference: number;
 
-  @Prop()
+  @Prop({ default: 0 })
   moviePreference: number;
 }
 
