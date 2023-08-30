@@ -10,71 +10,71 @@ import {
 
 export class LocationDto {
   @IsNumber()
-  latitude: number;
+  latitude?: number;
 
   @IsNumber()
-  longitude: number;
+  longitude?: number;
 }
 
 export class EditUserDto {
   @IsNotEmpty()
-  uuid: string;
+  uuid?: string;
 
   @IsOptional()
   @MinLength(4)
   @IsString()
   @IsNotEmpty()
-  name: string;
+  name?: string;
 
   @IsOptional()
   @MinLength(4)
   @IsEmail()
-  email: string;
+  email?: string;
 
   @IsOptional()
-  birthday: Date;
+  birthday?: Date;
 
   @IsOptional()
-  genre: string;
+  genre?: string;
 
   @IsOptional()
-  searchGenre: string;
+  searchGenre?: string;
 
   @IsOptional()
-  description: string;
+  description?: string;
 
   @IsOptional()
   @IsNumber({}, { each: true }) // Validate each item in the array
   @IsArray()
   @IsOptional()
-  ageRange: number[];
+  ageRange?: number[];
 
   @IsOptional()
-  location: LocationDto;
+  location?: LocationDto;
 
   @IsOptional()
-  city: string;
+  city?: string;
 
   @IsOptional()
-  isAdmin: boolean;
+  isAdmin?: boolean;
 
   @IsOptional()
   @IsArray()
   @IsNotEmpty()
-  images: string[];
+  images?: string[];
 
   @IsOptional()
-  postedBy: string;
-
-  @IsNumber()
-  @IsOptional()
-  distance: number;
+  postedBy?: string;
 
   @IsNumber()
   @IsOptional()
-  artistPreference: number;
+  distance?: number;
 
   @IsNumber()
   @IsOptional()
-  moviePreference: number;
+  artistPreference?: number;
+
+  @IsNumber()
+  @IsOptional()
+  moviePreference?: number;
 }

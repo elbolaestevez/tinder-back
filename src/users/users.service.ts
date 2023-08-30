@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
+import { EditUserDto } from './dto/update-user.dto';
 import { Model, isValidObjectId } from 'mongoose';
 import { User } from './entities/user.entity';
 import { InjectModel } from '@nestjs/mongoose';
@@ -70,6 +71,36 @@ export class UsersService {
       return findUser[0];
     }
     return false;
+  }
+  async update(email: string, editUserDto: EditUserDto) {
+    const userBody = {
+      name: editUserDto.name,
+      birthday: editUserDto.birthday,
+      genre: editUserDto.genre,
+      searchGenre: editUserDto.searchGenre,
+      description: editUserDto.description,
+      ageRange: editUserDto.ageRange,
+      location: editUserDto.location,
+      city: editUserDto.city,
+      distance: editUserDto.distance,
+      artistPreference: 1,
+      moviePreference: 1,
+    };
+    const user = await this.userModel.findOneAndUpdate(
+      { email: email },
+      userBody,
+      {
+        returnOriginal: false,
+      },
+    );
+    return user;
+  }
+  async remove(id: string) {
+    const { deletedCount } = await this.userModel.deleteOne({ _id: id });
+    if (deletedCount === 0) {
+      throw new BadRequestException(`User with this ${id} not found `);
+    }
+    return;
   }
   private handleExceptions(error: any) {
     if (error.code === 11000) {
